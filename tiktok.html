@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TikTok sign-in code</title>
+<style>body{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;color:#1a1a1a;background:#fff}
+code{display:block;word-break:break-all;padding:12px;border:1px solid #ccc;border-radius:8px;background:#f5f5f5;font-size:15px}
+button{margin-top:12px;font:inherit;padding:8px 16px;border-radius:8px;border:1px solid #2456a6;background:#2456a6;color:#fff;cursor:pointer}
+@media (prefers-color-scheme:dark){body{background:#111;color:#eee}code{background:#222;border-color:#444}}</style></head><body>
+<h1>TikTok sign-in code</h1>
+<div id="out"></div>
+<p>This page only shows the code from the address bar. It does not send or store anything.</p>
+<script>
+const p = new URLSearchParams(location.search), out = document.getElementById("out");
+const code = p.get("code"), err = p.get("error_description") || p.get("error");
+if (code) {
+  out.innerHTML = '<p>Copy this code and paste it into the <b>Connect TikTok</b> workflow on GitHub (field <b>code</b>) within a few minutes:</p><code id="c"></code><button id="b">Copy code</button>';
+  document.getElementById("c").textContent = code;
+  document.getElementById("b").onclick = () => navigator.clipboard.writeText(code).then(() => document.getElementById("b").textContent = "Copied");
+} else if (err) {
+  out.innerHTML = "<p>TikTok returned an error:</p><code id='c'></code>";
+  document.getElementById("c").textContent = err;
+} else {
+  out.innerHTML = "<p>No code here yet. Open the sign-in link from the Connect TikTok workflow first.</p>";
+}
+</script>
+</body></html>
